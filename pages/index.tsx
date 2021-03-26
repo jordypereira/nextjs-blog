@@ -5,7 +5,7 @@ import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
 
-export async function getStaticProps() {
+export async function getStaticProps () {
   const allPostsData = getSortedPostsData()
   return {
     props: {
@@ -14,16 +14,22 @@ export async function getStaticProps() {
   }
 }
 
-export default function Home({allPostsData}) {
+export default function Home ({ allPostsData }: {
+  allPostsData: {
+    title: string
+    date: string
+    id: string
+  }[]
+}) {
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p className="text-red-500">Hello. This website is clean!</p>
+        <p className="text-red-500">Hello. This website is clean! It's also using typescript now</p>
       </section>
-       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
